@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_114439) do
   enable_extension "plpgsql"
 
   create_table "communities", force: :cascade do |t|
-    t.string "string"
+    t.string "name"
     t.string "url"
     t.text "rules"
     t.integer "total_members"
