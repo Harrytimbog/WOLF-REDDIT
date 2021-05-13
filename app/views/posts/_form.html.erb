@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-6">
+    <%= simple_form_for [@community, @post] do |f| %>
+      <div class="form-group">
+        <%= f.input :title, label: 'What is the name of your post?', class: "form-control" %>
+        <%= f.input :body, label: 'What is the url of your post?', class: "form-control" %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
