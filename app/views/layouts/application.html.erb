@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WOLFReddit</title>
+    <title>Wolf Reddit Clone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,9 +12,13 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
+    <%= render partial: "layouts/header" %>
+
+    <%#= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+
+    <%= render partial: "layouts/footer" %>
   </body>
 </html>
