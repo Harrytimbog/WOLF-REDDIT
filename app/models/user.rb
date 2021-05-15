@@ -6,4 +6,12 @@ class User < ApplicationRecord
 
   has_many :communities
   has_many :posts
+  has_many :subscriptions
+  has_many :comments
+
+  validates_presence_of :first_name, :last_name, :username
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

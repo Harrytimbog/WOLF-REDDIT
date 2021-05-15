@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_13_132028) do
+ActiveRecord::Schema.define(version: 2021_05_15_115833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "message"
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "communities", force: :cascade do |t|
     t.string "name"
@@ -23,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_132028) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "summary"
     t.index ["user_id"], name: "index_communities_on_user_id"
   end
 
@@ -38,6 +49,15 @@ ActiveRecord::Schema.define(version: 2021_05_13_132028) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["community_id"], name: "index_posts_on_community_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "community_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["community_id"], name: "index_subscriptions_on_community_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,7 +76,11 @@ ActiveRecord::Schema.define(version: 2021_05_13_132028) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "communities", "users"
   add_foreign_key "posts", "communities"
   add_foreign_key "posts", "users"
+  add_foreign_key "subscriptions", "communities"
+  add_foreign_key "subscriptions", "users"
 end

@@ -14,16 +14,18 @@
   <body>
     <%= render partial: "layouts/header" %>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
+    <section class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 pt-4">
 
-          <%= yield %>
+            <%= yield %>
+          </div>
+
         </div>
-
+        <%= render 'shared/flashes' %>
       </div>
-      <%= render 'shared/flashes' %>
-    </div>
+    </section>
 
     <%#= render 'shared/navbar' %>
     <%= render partial: "layouts/footer" %>
