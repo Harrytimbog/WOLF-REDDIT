@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon pt-3 pb-3 mb-4">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <p class="h3">Reddit Clone</p>
+    <p class="h3">Jamisi Highway</p>
     <%#= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
     <% end %>
 
@@ -12,7 +12,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-      <div class="dropdown show">
+      <div class="dropdown show float-right">
         <a class="btn btn-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= current_user.full_name %>
         </a>
@@ -25,6 +25,11 @@
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </div>
       </div>
+      <div class="karma float-left mt-2 ml-2">
+        <%= current_user.karma %>
+        <span class="fa fa-star text-warning"></span>
+      </div>
+
       <% else %>
         <li class="float-right">
           <%= link_to "Login", new_user_session_path, class: "btn btn-outline-primary" %>

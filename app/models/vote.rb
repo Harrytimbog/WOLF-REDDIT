@@ -4,8 +4,8 @@ class Vote < ApplicationRecord
 
   validates_uniqueness_of :user_id, scope: :post_id
 
-  after_create :increment_vote
-  after_destroy :decrement_vote
+  after_create :increment_vote, :add_karma
+  after_destroy :decrement_vote, :remove_karma
 
   private
 
@@ -17,5 +17,15 @@ class Vote < ApplicationRecord
   def decrement_vote
     field = self.upvote ? :upvotes : :downvotes
     Post.find(self.post_id).decrement(field).save
+  end
+
+  def add_karma
+    user = User.find(self.user_id)
+    user.increment(:karma, 1).save
+  end
+
+  def remove_karma
+    user = User.find(self.user_id)
+    user.decrement(:karma, 1).save
   end
 end
