@@ -28,10 +28,10 @@ puts 'Finished Creating Users!'
 puts "Creating Fake Communities"
 10.times do
   community = Community.new(
-    name: Faker::Currency.name,
+    name: Faker::Sports::Football.position,
     url: Faker::Quotes::Shakespeare.hamlet_quote,
     rules: "No sending of money, no spamming and no insults",
-    summary: Faker::ChuckNorris.fact,
+    summary: Faker::Movies::HarryPotter.quote,
     user_id: 2
   )
   community.save!

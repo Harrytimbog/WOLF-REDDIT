@@ -11,7 +11,7 @@
     <div class="col-11">
       <h4 class="mb-1"><%= link_to post.title, community_post_path(post.community_id, post)  %></h4>
       <p><small><%= link_to post.community.name, community_path(post.community) %> Posted by <%= link_to post.user.username, profile_path(post.user.username) %> <%= time_ago_in_words post.created_at %> ago.</small></p>
-      <p><%= truncate post.body, length: 200  %></p>
+      <p id="post-body"><%= truncate post.body, length: 200  %></p>
     </div>
   </div>
 </div>

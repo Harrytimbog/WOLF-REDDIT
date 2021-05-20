@@ -1,6 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: lime;
+
+  .full-name {
+    font-size: 14px;
+  }
+
+  .h3{
+    font-size: 24px;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
